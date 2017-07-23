@@ -1,0 +1,1 @@
+export const MATRIX_CREATED = 'MATRIX_CREATED';
