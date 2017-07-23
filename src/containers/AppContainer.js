@@ -1,10 +1,20 @@
-import React, {PureComponent} from 'react';
-import { connect } from 'react-redux';
+import React, {PureComponent, PropTypes} from 'react';
+import {connect} from 'react-redux';
+import Main from '../components/Main/main';
+import {initMatrix} from '../redux/actions/cells';
 
 class AppContainer extends PureComponent {
+  static propTypes = {
+    initMatrix: PropTypes.func.isRequired
+  };
+
+  componentDidMount() {
+    this.props.initMatrix();
+  }
+
   render() {
     return (
-      <div>Hello!</div>
+      <Main/>
     );
   }
 }
@@ -14,9 +24,8 @@ const mapStateToProps = state => {
   return {};
 };
 
-const mapDispatchToProps = dispatch => {
-  console.info('dispatch', dispatch);
-  return {};
+const mapDispatchToProps = {
+  initMatrix
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
