@@ -3,8 +3,8 @@ import * as ACTIONS from '../actionTypes';
 
 export const defaultState = {
   data: {},
-  width: 5,
-  height: 5
+  width: null,
+  height: null
 };
 
 export const getData = state => state.data;

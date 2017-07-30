@@ -1,27 +1,30 @@
-import React, {PureComponent, PropTypes} from 'react';
+import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Main from '../components/Main/main';
 import {initMatrix} from '../redux/actions/cells';
 
 class AppContainer extends PureComponent {
   static propTypes = {
-    initMatrix: PropTypes.func.isRequired
+    initMatrix: PropTypes.func.isRequired,
+    width: PropTypes.number,
+    height: PropTypes.number
   };
 
-  componentDidMount() {
-    this.props.initMatrix();
-  }
-
   render() {
+    const {width, height, initMatrix} = this.props;
+
     return (
-      <Main/>
+      <Main width={width} height={height} initMatrix={initMatrix}/>
     );
   }
 }
 
-const mapStateToProps = state => {
-  console.log('mapping state', state);
-  return {};
+const mapStateToProps = ({cells}) => {
+  return {
+    width: cells.width,
+    height: cells.height
+  };
 };
 
 const mapDispatchToProps = {
