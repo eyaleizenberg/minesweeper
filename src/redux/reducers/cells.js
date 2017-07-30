@@ -11,6 +11,18 @@ export const getData = state => state.data;
 
 export default handleActions({
   [ACTIONS.MATRIX_CREATED]: (state, {payload}) => {
-    return {...state, ...payload};
+    const data = {};
+
+    for (let x = 0; x < payload.width; x++) {
+      for (let y = 0; y < payload.height; y++) {
+        data[`${x}-${y}`] = {
+          x,
+          y,
+          isMine: false,
+          isExposed: false
+        };
+      }
+    }
+    return {...state, ...data};
   }
 }, defaultState);

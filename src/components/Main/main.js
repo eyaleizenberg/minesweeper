@@ -9,6 +9,10 @@ class Main extends PureComponent {
     initMatrix: PropTypes.func.isRequired
   };
 
+  constructor(props) {
+    super(props);
+    this.handleInitButtonClicked = this.handleInitButtonClicked.bind(this);
+  }
   renderMatrix() {
     if (!this.props.width) {
       return null;
@@ -20,11 +24,15 @@ class Main extends PureComponent {
     );
   }
 
+  handleInitButtonClicked() {
+    this.props.initMatrix();
+  }
+
   render() {
     return (
       <div className={classes.main}>
         <span>This is the main component</span>
-        <div className={classes.bigButton} onClick={this.props.initMatrix}>New Game</div>
+        <div className={classes.bigButton} onClick={this.handleInitButtonClicked}>New Game</div>
         {this.renderMatrix()}
       </div>
     );
