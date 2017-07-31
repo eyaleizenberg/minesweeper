@@ -7,23 +7,21 @@ import {initMatrix} from '../redux/actions/cells';
 class AppContainer extends PureComponent {
   static propTypes = {
     initMatrix: PropTypes.func.isRequired,
-    width: PropTypes.number,
-    height: PropTypes.number
+    sortedData: PropTypes.array
   };
 
   render() {
-    const {width, height, initMatrix} = this.props;
+    const {sortedData, initMatrix} = this.props;
 
     return (
-      <Main width={width} height={height} initMatrix={initMatrix}/>
+      <Main sortedData={sortedData} initMatrix={initMatrix}/>
     );
   }
 }
 
 const mapStateToProps = ({cells}) => {
   return {
-    width: cells.width,
-    height: cells.height
+    sortedData: cells.sortedData
   };
 };
 

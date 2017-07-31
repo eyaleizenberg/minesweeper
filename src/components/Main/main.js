@@ -1,30 +1,24 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import classes from './main.scss';
+import Matrix from '../Matrix/matrix';
 
 class Main extends PureComponent {
   static propTypes = {
-    width: PropTypes.number,
-    height: PropTypes.number,
-    initMatrix: PropTypes.func.isRequired
+    initMatrix: PropTypes.func.isRequired,
+    sortedData: PropTypes.array
   };
 
-  constructor(props) {
-    super(props);
-    this.handleInitButtonClicked = this.handleInitButtonClicked.bind(this);
-  }
   renderMatrix() {
-    if (!this.props.width) {
+    const {sortedData} = this.props;
+    if (!sortedData.length) {
       return null;
     }
 
-    const {width, height} = this.props;
-    return (
-      <span>{`the size is ${width} X ${height}`}</span>
-    );
+    return <Matrix sortedData={sortedData}/>;
   }
 
-  handleInitButtonClicked() {
+  handleInitButtonClicked = () => {
     this.props.initMatrix();
   }
 
