@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import CellContainer from '../../containers/CellContainer';
 // import classes from './matrix.scss';
 
 class Matrix extends PureComponent {
@@ -8,9 +9,13 @@ class Matrix extends PureComponent {
   };
 
   renderCells() {
-    this.props.sortedData.map((column, columnIndex) => {
-      debugger
-    })
+    return this.props.sortedData.map((column, columnIndex) => (
+      <div key={columnIndex}>
+        {
+          column.map(id => <CellContainer key={id} id={id}/>)
+        }
+      </div>
+    ));
   }
 
   render() {
