@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import CellContainer from '../../containers/CellContainer';
-// import classes from './matrix.scss';
+import classes from './matrix.scss';
 
 class Matrix extends PureComponent {
   static propTypes = {
@@ -10,7 +10,7 @@ class Matrix extends PureComponent {
 
   renderCells() {
     return this.props.sortedData.map((column, columnIndex) => (
-      <div key={columnIndex}>
+      <div className={classes.column} key={columnIndex}>
         {
           column.map(id => <CellContainer key={id} id={id}/>)
         }
@@ -20,7 +20,7 @@ class Matrix extends PureComponent {
 
   render() {
     return (
-      <div>
+      <div className={classes.container}>
         {this.renderCells()}
       </div>
     );

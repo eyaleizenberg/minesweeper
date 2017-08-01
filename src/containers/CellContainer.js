@@ -1,9 +1,9 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-// import Cell from '../components/Main/main';
+import Cell from '../components/Cell/cell';
 
-class AppContainer extends PureComponent {
+class CellContainer extends PureComponent {
   static propTypes = {
     id: PropTypes.string.isRequired,
     isDemon: PropTypes.bool.isRequired,
@@ -11,10 +11,10 @@ class AppContainer extends PureComponent {
   };
 
   render() {
-    // const {sortedData, initMatrix} = this.props;
+    const {isDemon, isExposed} = this.props;
 
     return (
-      <span>{`[ ${this.props.isDemon ? 'X' : '  '} ]`}</span>
+      <Cell isDemon={isDemon} isExposed={isExposed}/>
     );
   }
 }
@@ -29,4 +29,4 @@ const mapStateToProps = ({cells}, {id}) => {
 //   initMatrix
 // };
 
-export default connect(mapStateToProps)(AppContainer);
+export default connect(mapStateToProps)(CellContainer);
