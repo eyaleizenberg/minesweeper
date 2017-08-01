@@ -8,10 +8,13 @@ class Cell extends PureComponent {
     isExposed: PropTypes.bool.isRequired
   };
 
+  renderDemon() {
+    return <img className={classes.demon} src="/demons/cacodemon.png"/>;
+  }
   render() {
     return (
       <div className={classes.cell}>
-        {this.props.isDemon ? 'X' : ' '}
+        {this.props.isDemon && this.renderDemon()}
       </div>
     );
   }
