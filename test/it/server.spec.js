@@ -14,6 +14,6 @@ describe('When rendering', () => {
 
   it('should display a title', async () => {
     const response = await axiosInstance.get('/');
-    expect(response.data).to.contain('Wix Full Stack Project Boilerplate');
+    expect(response.data).to.contain('DooM Demon Sweeper');
   });
 });

@@ -23,7 +23,7 @@ const conjureDemons = (data, totalDemons, width, height) => {
     const id = genXy(x, y);
 
     if (!tempData[id].isDemon) {
-      tempData[id] = {...data[id], isDemon: true};
+      tempData[id] = {...data[id], isDemon: true, demonId: getRandomNumber(8)};
       demonsConjured++;
     }
   }
@@ -55,6 +55,41 @@ const generateMatrix = (width, height) => {
   };
 };
 
+const countDemonInCell = (dataWithDemons, id) => {
+  const adjacentCell = dataWithDemons[id];
+  if (adjacentCell) {
+    return adjacentCell.isDemon ? 1 : 0;
+  }
+
+  return 0;
+};
+
+const setNumbers = (dataWithDemons, width, height) => {
+  const dataWithNumbers = {...dataWithDemons};
+
+  for (let x = 0; x < width; x++) {
+    for (let y = 0; y < height; y++) {
+      let count = 0;
+
+      count += countDemonInCell(dataWithDemons, genXy(x - 1, y)); // check to the left
+      count += countDemonInCell(dataWithDemons, genXy(x + 1, y)); // check to the right
+      count += countDemonInCell(dataWithDemons, genXy(x, y + 1)); // check to the bottom
+      count += countDemonInCell(dataWithDemons, genXy(x, y - 1)); // check to the bottom
+      count += countDemonInCell(dataWithDemons, genXy(x + 1, y + 1)); // check to the bottom right
+      count += countDemonInCell(dataWithDemons, genXy(x + 1, y - 1)); // check to the top right
+      count += countDemonInCell(dataWithDemons, genXy(x - 1, y + 1)); // check to the bottom left
+      count += countDemonInCell(dataWithDemons, genXy(x - 1, y - 1)); // check to the top left
+      dataWithNumbers[genXy(x, y)].adjacentDemons = count;
+      // data[id] = {
+      //   id,
+      //   isDemon: false,
+      //   isExposed: false
+      // };
+    }
+  }
+
+  return dataWithNumbers;
+};
 
 export const getData = state => state.data;
 
@@ -63,6 +98,7 @@ export default handleActions({
     const {width, height} = payload;
     const {sortedData, data} = generateMatrix(width, height);
     const dataWithDemons = conjureDemons(data, state.totalDemons, width, height);
-    return {...state, sortedData, data: dataWithDemons, width, height};
+    const dataWithNumbers = setNumbers(dataWithDemons, width, height);
+    return {...state, sortedData, data: dataWithNumbers, width, height};
   }
 }, defaultState);

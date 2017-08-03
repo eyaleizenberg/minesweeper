@@ -9,7 +9,7 @@ module.exports = () => {
   app.get('/', async (req, res) => {
     const templatePath = './src/index.ejs';
     const data = {
-      title: 'Wix Full Stack Project Boilerplate',
+      title: 'DooM Demon Sweeper',
       staticsBaseUrl: 'http://localhost:3200/',
       baseurl: 'http://localhost:3000/',
       locale: 'en'
