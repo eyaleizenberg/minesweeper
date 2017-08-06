@@ -81,7 +81,7 @@ const setNumbers = (dataWithDemons, width, height) => {
   return dataWithNumbers;
 };
 
-export const getData = state => state.data;
+export const getCellsData = state => state.data;
 
 export default handleActions({
   [ACTIONS.MATRIX_CREATED]: (state, {payload}) => {

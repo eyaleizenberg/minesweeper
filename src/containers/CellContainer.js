@@ -2,6 +2,8 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Cell from '../components/Cell/cell';
+import {revealCell} from '../redux/actions/cells';
+import {getCellsData} from '../redux/reducers/cells';
 
 class CellContainer extends PureComponent {
   static propTypes = {
@@ -9,18 +11,21 @@ class CellContainer extends PureComponent {
     isDemon: PropTypes.bool.isRequired,
     isExposed: PropTypes.bool.isRequired,
     demonId: PropTypes.number,
-    adjacentDemons: PropTypes.number.isRequired
+    adjacentDemons: PropTypes.number.isRequired,
+    revealCell: PropTypes.func.isRequired
   };
 
   render() {
-    const {isDemon, isExposed, demonId, adjacentDemons} = this.props;
+    const {id, isDemon, isExposed, demonId, adjacentDemons, revealCell} = this.props;
 
     return (
       <Cell
+        id={id}
         isDemon={isDemon}
         isExposed={isExposed}
         demonId={demonId}
         adjacentDemons={adjacentDemons}
+        revealCell={revealCell}
         />
     );
   }
@@ -28,12 +33,12 @@ class CellContainer extends PureComponent {
 
 const mapStateToProps = ({cells}, {id}) => {
   return {
-    ...cells.data[id]
+    ...getCellsData(cells)[id]
   };
 };
 
-// const mapDispatchToProps = {
-//   initMatrix
-// };
+const mapDispatchToProps = {
+  revealCell
+};
 
-export default connect(mapStateToProps)(CellContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CellContainer);

@@ -5,10 +5,12 @@ import classnames from 'classnames';
 
 class Cell extends PureComponent {
   static propTypes = {
+    id: PropTypes.string.isRequired,
     isDemon: PropTypes.bool.isRequired,
     isExposed: PropTypes.bool.isRequired,
     demonId: PropTypes.number,
-    adjacentDemons: PropTypes.number.isRequired
+    adjacentDemons: PropTypes.number.isRequired,
+    revealCell: PropTypes.func.isRequired
   };
 
   renderDemon() {
@@ -23,11 +25,16 @@ class Cell extends PureComponent {
     );
   }
 
+  handleClick = () => {
+    const {revealCell, id} = this.props;
+    revealCell(id);
+  }
+
   render() {
     const {isDemon, adjacentDemons} = this.props;
 
     return (
-      <div className={classes.cell}>
+      <div className={classes.cell} onClick={this.handleClick}>
         {isDemon && this.renderDemon()}
         {adjacentDemons > 0 && !isDemon && this.renderAdjacentCount()}
       </div>
