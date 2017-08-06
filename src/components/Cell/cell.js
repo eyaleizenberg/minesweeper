@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import classes from './cell.scss';
+import classnames from 'classnames';
 
 class Cell extends PureComponent {
   static propTypes = {
@@ -18,7 +19,7 @@ class Cell extends PureComponent {
     const {adjacentDemons} = this.props;
 
     return (
-      <span className={classes[`adjacentDemons-${adjacentDemons}`]}>{adjacentDemons}</span>
+      <span title={adjacentDemons} className={classnames(classes.adjacentDemons, classes[`count${adjacentDemons}`])}>{adjacentDemons}</span>
     );
   }
 

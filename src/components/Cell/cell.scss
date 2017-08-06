@@ -1,6 +1,6 @@
 @font-face {
   font-family: Doom;
-  src: url('/DooM.ttf');
+  src: url('/AmazDooMLeft.ttf');
 }
 
 .cell {
@@ -22,8 +22,12 @@
   height: 40px;
 }
 
-.adjacentDemons-1 { color: blue; }
-.adjacentDemons-2 { color: green; }
-.adjacentDemons-3 { color: red; }
-.adjacentDemons-4 { color: purple; }
-.adjacentDemons-5 { color: darkred; }
+.adjacentDemons {
+  font-size: 24px;
+  height: 24px;
+  &.count1 { color: blue; }
+  &.count2 { color: green; }
+  &.count3 { color: red; }
+  &.count4 { color: purple; }
+  &.count5 { color: darkred; }
+}

@@ -71,20 +71,10 @@ const setNumbers = (dataWithDemons, width, height) => {
     for (let y = 0; y < height; y++) {
       let count = 0;
 
-      count += countDemonInCell(dataWithDemons, genXy(x - 1, y)); // check to the left
-      count += countDemonInCell(dataWithDemons, genXy(x + 1, y)); // check to the right
-      count += countDemonInCell(dataWithDemons, genXy(x, y + 1)); // check to the bottom
-      count += countDemonInCell(dataWithDemons, genXy(x, y - 1)); // check to the bottom
-      count += countDemonInCell(dataWithDemons, genXy(x + 1, y + 1)); // check to the bottom right
-      count += countDemonInCell(dataWithDemons, genXy(x + 1, y - 1)); // check to the top right
-      count += countDemonInCell(dataWithDemons, genXy(x - 1, y + 1)); // check to the bottom left
-      count += countDemonInCell(dataWithDemons, genXy(x - 1, y - 1)); // check to the top left
+      [[x - 1, y], [x + 1, y], [x, y + 1], [x, y - 1], [x + 1, y + 1], [x + 1, y - 1], [x - 1, y + 1], x - 1, y - 1].forEach(coordinates => {
+        count += countDemonInCell(dataWithDemons, genXy(coordinates[0], coordinates[1]));
+      });
       dataWithNumbers[genXy(x, y)].adjacentDemons = count;
-      // data[id] = {
-      //   id,
-      //   isDemon: false,
-      //   isExposed: false
-      // };
     }
   }
 
