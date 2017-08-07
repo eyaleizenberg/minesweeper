@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import classes from './cell.scss';
 import classnames from 'classnames';
+import CellContent from './cellContent';
 
 class Cell extends PureComponent {
   static propTypes = {
@@ -14,7 +15,7 @@ class Cell extends PureComponent {
   };
 
   renderDemon() {
-    return <img className={classes.demon} src={`/demons/${this.props.demonId}.png`}/>;
+    return <img className={classes.demon} src={`${window.__STATICS_BASE_URL__}/assets/images/demons/${this.props.demonId}.png`}/>;
   }
 
   renderAdjacentCount() {
@@ -31,12 +32,13 @@ class Cell extends PureComponent {
   }
 
   render() {
-    const {isDemon, adjacentDemons} = this.props;
+    const {isDemon, adjacentDemons, isExposed, demonId} = this.props;
 
     return (
-      <div className={classes.cell} onClick={this.handleClick}>
-        {isDemon && this.renderDemon()}
-        {adjacentDemons > 0 && !isDemon && this.renderAdjacentCount()}
+      <div className={classnames(classes.cell, [classes.isExposed]: isExposed)} onClick={this.handleClick}>
+        {(isDemon || adjacentDemons > 0) &&
+          <CellContent adjacentDemons={adjacentDemons} isDemon={isDemon} demonId={demonId}/>
+        }
       </div>
     );
   }
