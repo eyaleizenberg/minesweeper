@@ -1,5 +1,5 @@
 import {handleActions} from 'redux-actions';
-import * as ACTIONS from '../actionTypes';
+import * as ACTIONS from '../../constants/actionTypes';
 import genXy from '../../utilities/genXy';
 
 export const defaultState = {
@@ -7,7 +7,7 @@ export const defaultState = {
   data: {},
   width: null,
   height: null,
-  totalDemons: 10
+  totalDemons: null
 };
 
 const getRandomNumber = max => Math.floor((Math.random() * 1000) + 1) % max;
@@ -100,11 +100,11 @@ export const getCellsData = state => state.data;
 
 export default handleActions({
   [ACTIONS.MATRIX_CREATED]: (state, {payload}) => {
-    const {width, height} = payload;
+    const {width, height, totalDemons} = payload;
     const {sortedData, data} = generateMatrix(width, height);
-    const dataWithDemons = conjureDemons(data, state.totalDemons, width, height);
+    const dataWithDemons = conjureDemons(data, totalDemons, width, height);
     const dataWithNumbers = setNumbers(dataWithDemons, width, height);
-    return {...state, sortedData, data: dataWithNumbers, width, height};
+    return {...state, sortedData, data: dataWithNumbers, width, height, totalDemons};
   },
   [ACTIONS.GAME_OVER]: (state, {payload}) => {
     const data = markAllVisible(getCellsData(state), payload.cellId);

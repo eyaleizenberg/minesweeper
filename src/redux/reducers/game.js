@@ -1,5 +1,5 @@
 import {handleActions} from 'redux-actions';
-import * as ACTIONS from '../actionTypes';
+import * as ACTIONS from '../../constants/actionTypes';
 
 export const defaultState = {
   isGameOver: false,
@@ -15,5 +15,8 @@ export default handleActions({
   },
   [ACTIONS.SHOW_NEW_GAME_DIALOG]: state => {
     return {...state, newGameDialogShown: true};
+  },
+  [ACTIONS.MATRIX_CREATED]: state => {
+    return {...state, newGameDialogShown: false, gameInProgress: true, isGameOver: false};
   }
 }, defaultState);

@@ -17,29 +17,21 @@ class Main extends PureComponent {
 
   renderMatrix() {
     const {sortedData, isGameOver} = this.props;
-    if (!sortedData.length) {
-      return null;
-    }
-
     return <Matrix sortedData={sortedData} isGameOver={isGameOver}/>;
   }
 
-  handleInitButtonClicked = () => {
-    this.props.initMatrix();
-  }
-
   renderContent() {
-    const {newGameDialogShown, gameInProgress} = this.props;
+    const {newGameDialogShown, gameInProgress, initMatrix} = this.props;
 
     if (!newGameDialogShown && !gameInProgress) {
       return <Logo/>;
     }
 
     if (newGameDialogShown) {
-      return <NewGameDialog/>;
+      return <NewGameDialog initMatrix={initMatrix}/>;
     }
 
-    return null;
+    return this.renderMatrix();
   }
 
   render() {
