@@ -1,5 +1,8 @@
 .container {
   display: flex;
+  &.gameOver {
+    pointer-events: none;
+  }
 }
 
 .column {

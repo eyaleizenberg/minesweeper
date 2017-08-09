@@ -12,11 +12,12 @@ class CellContainer extends PureComponent {
     isExposed: PropTypes.bool.isRequired,
     demonId: PropTypes.number,
     adjacentDemons: PropTypes.number.isRequired,
-    revealCell: PropTypes.func.isRequired
+    revealCell: PropTypes.func.isRequired,
+    isKiller: PropTypes.bool
   };
 
   render() {
-    const {id, isDemon, isExposed, demonId, adjacentDemons, revealCell} = this.props;
+    const {id, isDemon, isExposed, demonId, adjacentDemons, revealCell, isKiller} = this.props;
 
     return (
       <Cell
@@ -26,6 +27,7 @@ class CellContainer extends PureComponent {
         demonId={demonId}
         adjacentDemons={adjacentDemons}
         revealCell={revealCell}
+        isKiller={isKiller}
         />
     );
   }

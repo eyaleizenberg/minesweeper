@@ -81,6 +81,21 @@ const setNumbers = (dataWithDemons, width, height) => {
   return dataWithNumbers;
 };
 
+const markAllVisible = (data, cellId) => {
+  const tempData = {...data};
+  Object.keys(tempData).forEach(currentCell => {
+    const newCellData = {isExposed: true};
+
+    if (currentCell === cellId) {
+      newCellData.isKiller = true;
+    }
+
+    tempData[currentCell] = {...tempData[currentCell], ...newCellData};
+  });
+
+  return tempData;
+};
+
 export const getCellsData = state => state.data;
 
 export default handleActions({
@@ -90,5 +105,9 @@ export default handleActions({
     const dataWithDemons = conjureDemons(data, state.totalDemons, width, height);
     const dataWithNumbers = setNumbers(dataWithDemons, width, height);
     return {...state, sortedData, data: dataWithNumbers, width, height};
+  },
+  [ACTIONS.GAME_OVER]: (state, {payload}) => {
+    const data = markAllVisible(getCellsData(state), payload.cellId);
+    return {...state, data};
   }
 }, defaultState);

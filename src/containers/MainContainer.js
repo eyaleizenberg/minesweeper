@@ -7,21 +7,23 @@ import {initMatrix} from '../redux/actions/cells';
 class AppContainer extends PureComponent {
   static propTypes = {
     initMatrix: PropTypes.func.isRequired,
-    sortedData: PropTypes.array
+    sortedData: PropTypes.array,
+    isGameOver: PropTypes.bool.isRequired
   };
 
   render() {
-    const {sortedData, initMatrix} = this.props;
+    const {sortedData, initMatrix, isGameOver} = this.props;
 
     return (
-      <Main sortedData={sortedData} initMatrix={initMatrix}/>
+      <Main sortedData={sortedData} initMatrix={initMatrix} isGameOver={isGameOver}/>
     );
   }
 }
 
-const mapStateToProps = ({cells}) => {
+const mapStateToProps = ({cells, game}) => {
   return {
-    sortedData: cells.sortedData
+    sortedData: cells.sortedData,
+    isGameOver: game.isGameOver
   };
 };
 

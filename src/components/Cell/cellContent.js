@@ -23,12 +23,16 @@ export default class CellContent extends PureComponent {
   }
 
   render() {
-    const {isDemon} = this.props;
+    const {isDemon, adjacentDemons} = this.props;
 
     if (isDemon) {
       return this.renderDemon();
     }
 
-    return this.renderAdjacentCount();
+    if (adjacentDemons > 0) {
+      return this.renderAdjacentCount();
+    }
+
+    return null;
   }
 }

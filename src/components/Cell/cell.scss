@@ -15,4 +15,7 @@
   &:active {
     background-color: #aaa;
   }
+  &.isKiller {
+    background-color: red;
+  }
 }

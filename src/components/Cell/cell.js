@@ -11,7 +11,8 @@ class Cell extends PureComponent {
     isExposed: PropTypes.bool.isRequired,
     demonId: PropTypes.number,
     adjacentDemons: PropTypes.number.isRequired,
-    revealCell: PropTypes.func.isRequired
+    revealCell: PropTypes.func.isRequired,
+    isKiller: PropTypes.bool
   };
 
   renderDemon() {
@@ -32,13 +33,11 @@ class Cell extends PureComponent {
   }
 
   render() {
-    const {isDemon, adjacentDemons, isExposed, demonId} = this.props;
+    const {isDemon, adjacentDemons, isExposed, demonId, isKiller} = this.props;
 
     return (
-      <div className={classnames(classes.cell, [classes.isExposed]: isExposed)} onClick={this.handleClick}>
-        {(isDemon || adjacentDemons > 0) &&
-          <CellContent adjacentDemons={adjacentDemons} isDemon={isDemon} demonId={demonId}/>
-        }
+      <div className={classnames(classes.cell, {[classes.isExposed]: isExposed, [classes.isKiller]: isKiller})} onClick={this.handleClick}>
+        {isExposed && <CellContent adjacentDemons={adjacentDemons} isDemon={isDemon} demonId={demonId}/>}
       </div>
     );
   }

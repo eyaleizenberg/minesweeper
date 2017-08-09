@@ -2,10 +2,12 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import CellContainer from '../../containers/CellContainer';
 import classes from './matrix.scss';
+import classnames from 'classnames';
 
 class Matrix extends PureComponent {
   static propTypes = {
-    sortedData: PropTypes.array.isRequired
+    sortedData: PropTypes.array.isRequired,
+    isGameOver: PropTypes.bool.isRequired
   };
 
   renderCells() {
@@ -20,7 +22,7 @@ class Matrix extends PureComponent {
 
   render() {
     return (
-      <div className={classes.container}>
+      <div className={classnames(classes.container, {[classes.gameOver]: this.props.isGameOver})}>
         {this.renderCells()}
       </div>
     );

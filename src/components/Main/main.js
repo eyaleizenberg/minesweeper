@@ -6,16 +6,17 @@ import Matrix from '../Matrix/matrix';
 class Main extends PureComponent {
   static propTypes = {
     initMatrix: PropTypes.func.isRequired,
-    sortedData: PropTypes.array
+    sortedData: PropTypes.array,
+    isGameOver: PropTypes.bool.isRequired
   };
 
   renderMatrix() {
-    const {sortedData} = this.props;
+    const {sortedData, isGameOver} = this.props;
     if (!sortedData.length) {
       return null;
     }
 
-    return <Matrix sortedData={sortedData}/>;
+    return <Matrix sortedData={sortedData} isGameOver={isGameOver}/>;
   }
 
   handleInitButtonClicked = () => {
