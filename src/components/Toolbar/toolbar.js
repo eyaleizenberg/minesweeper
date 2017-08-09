@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import classes from './toolbar.scss';
+import Face from '../Face/face';
 
 class Toolbar extends PureComponent {
   static propTypes = {
@@ -20,10 +21,12 @@ class Toolbar extends PureComponent {
     return (
       <div className={classes.content}>
         {this.renderIntroBox('NEW GAME', this.props.showNewGame)}
-        <div className={classes.face}></div>
+        <div className={classes.face}>
+          <Face/>
+        </div>
         {this.renderIntroBox('LOAD GAME')}
       </div>
-    )
+    );
   }
 
   renderInProgressContent() {
