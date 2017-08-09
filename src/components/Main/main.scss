@@ -1,6 +1,9 @@
 .main {
   display: flex;
   flex-direction: column;
+  background: url('/assets/images/background.jpg') 0 0 / 1200px 670px no-repeat;
+  height: 670px;
+  width: 1200px
 }
 
 .bigButton {
