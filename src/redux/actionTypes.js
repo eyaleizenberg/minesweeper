@@ -1,2 +1,3 @@
 export const MATRIX_CREATED = 'MATRIX_CREATED';
 export const GAME_OVER = 'GAME_OVER';
+export const SHOW_NEW_GAME_DIALOG = 'SHOW_NEW_GAME_DIALOG';

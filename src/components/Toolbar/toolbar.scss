@@ -4,3 +4,31 @@
   display: flex;
   background: url('/assets/images/toolbar/intro_toolbar.png') 0 0 / 1200px 167px no-repeat;
 }
+
+.content {
+  display: flex;
+}
+
+.introBox {
+  width: 497px;
+  height: 131px;
+  margin: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameText {
+  font-family: Doom;
+  color: #fffd6a;
+  font-size: 28px;
+  text-shadow: 4px 2px black;
+  cursor: pointer;
+}
+
+.face {
+  height: 150px;
+  width: 125px;
+  background-color: purple;
+  margin: 9px 2px;
+}

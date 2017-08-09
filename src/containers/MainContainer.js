@@ -8,14 +8,15 @@ class AppContainer extends PureComponent {
   static propTypes = {
     initMatrix: PropTypes.func.isRequired,
     sortedData: PropTypes.array,
-    isGameOver: PropTypes.bool.isRequired
+    isGameOver: PropTypes.bool.isRequired,
+    newGameDialogShown: PropTypes.bool.isRequired
   };
 
   render() {
-    const {sortedData, initMatrix, isGameOver} = this.props;
+    const {sortedData, initMatrix, isGameOver, newGameDialogShown} = this.props;
 
     return (
-      <Main sortedData={sortedData} initMatrix={initMatrix} isGameOver={isGameOver}/>
+      <Main sortedData={sortedData} initMatrix={initMatrix} isGameOver={isGameOver} newGameDialogShown={newGameDialogShown}/>
     );
   }
 }
@@ -23,7 +24,8 @@ class AppContainer extends PureComponent {
 const mapStateToProps = ({cells, game}) => {
   return {
     sortedData: cells.sortedData,
-    isGameOver: game.isGameOver
+    isGameOver: game.isGameOver,
+    newGameDialogShown: game.newGameDialogShown
   };
 };
 
