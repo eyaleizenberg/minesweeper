@@ -9,14 +9,21 @@ class AppContainer extends PureComponent {
     initMatrix: PropTypes.func.isRequired,
     sortedData: PropTypes.array,
     isGameOver: PropTypes.bool.isRequired,
-    newGameDialogShown: PropTypes.bool.isRequired
+    newGameDialogShown: PropTypes.bool.isRequired,
+    gameInProgress: PropTypes.bool.isRequired
   };
 
   render() {
-    const {sortedData, initMatrix, isGameOver, newGameDialogShown} = this.props;
+    const {sortedData, initMatrix, isGameOver, newGameDialogShown, gameInProgress} = this.props;
 
     return (
-      <Main sortedData={sortedData} initMatrix={initMatrix} isGameOver={isGameOver} newGameDialogShown={newGameDialogShown}/>
+      <Main
+        sortedData={sortedData}
+        initMatrix={initMatrix}
+        isGameOver={isGameOver}
+        newGameDialogShown={newGameDialogShown}
+        gameInProgress={gameInProgress}
+        />
     );
   }
 }
@@ -25,7 +32,8 @@ const mapStateToProps = ({cells, game}) => {
   return {
     sortedData: cells.sortedData,
     isGameOver: game.isGameOver,
-    newGameDialogShown: game.newGameDialogShown
+    newGameDialogShown: game.newGameDialogShown,
+    gameInProgress: game.gameInProgress
   };
 };
 

@@ -4,13 +4,15 @@ import classes from './main.scss';
 import Matrix from '../Matrix/matrix';
 import ToolbarContainer from '../../containers/ToolbarContainer';
 import NewGameDialog from '../NewGameDialog/newGameDialog';
+import Logo from '../Logo/logo';
 
 class Main extends PureComponent {
   static propTypes = {
     initMatrix: PropTypes.func.isRequired,
     sortedData: PropTypes.array,
     isGameOver: PropTypes.bool.isRequired,
-    newGameDialogShown: PropTypes.bool.isRequired
+    newGameDialogShown: PropTypes.bool.isRequired,
+    gameInProgress: PropTypes.bool.isRequired
   };
 
   renderMatrix() {
@@ -27,7 +29,13 @@ class Main extends PureComponent {
   }
 
   renderContent() {
-    if (this.props.newGameDialogShown) {
+    const {newGameDialogShown, gameInProgress} = this.props;
+
+    if (!newGameDialogShown && !gameInProgress) {
+      return <Logo/>;
+    }
+
+    if (newGameDialogShown) {
       return <NewGameDialog/>;
     }
 
