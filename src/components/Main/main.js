@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import classes from './main.scss';
 import Matrix from '../Matrix/matrix';
+import ToolbarContainer from '../../containers/ToolbarContainer';
 
 class Main extends PureComponent {
   static propTypes = {
@@ -26,9 +27,8 @@ class Main extends PureComponent {
   render() {
     return (
       <div className={classes.main}>
-        <span>This is the main component</span>
-        <div className={classes.bigButton} onClick={this.handleInitButtonClicked}>New Game</div>
-        {this.renderMatrix()}
+        <div className={classes.content}></div>
+        <ToolbarContainer/>
       </div>
     );
   }

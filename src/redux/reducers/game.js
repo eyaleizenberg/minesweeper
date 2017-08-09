@@ -2,7 +2,8 @@ import {handleActions} from 'redux-actions';
 import * as ACTIONS from '../actionTypes';
 
 export const defaultState = {
-  isGameOver: false
+  isGameOver: false,
+  gameInProgress: false,
 };
 
 export const getCellsData = state => state.data;
