@@ -12,11 +12,20 @@ class MainContainer extends PureComponent {
     isGameOver: PropTypes.bool.isRequired,
     newGameDialogShown: PropTypes.bool.isRequired,
     gameInProgress: PropTypes.bool.isRequired,
-    showCustomGameDialog: PropTypes.func.isRequired
+    showCustomGameDialog: PropTypes.func.isRequired,
+    customGameDialogShown: PropTypes.bool.isRequired
   };
 
   render() {
-    const {sortedData, initMatrix, isGameOver, newGameDialogShown, gameInProgress, showCustomGameDialog} = this.props;
+    const {
+      sortedData,
+      initMatrix,
+      isGameOver,
+      newGameDialogShown,
+      gameInProgress,
+      showCustomGameDialog,
+      customGameDialogShown
+    } = this.props;
 
     return (
       <Main
@@ -26,6 +35,7 @@ class MainContainer extends PureComponent {
         newGameDialogShown={newGameDialogShown}
         gameInProgress={gameInProgress}
         showCustomGameDialog={showCustomGameDialog}
+        customGameDialogShown={customGameDialogShown}
         />
     );
   }
@@ -36,7 +46,8 @@ const mapStateToProps = ({cells, game}) => {
     sortedData: cells.sortedData,
     isGameOver: game.isGameOver,
     newGameDialogShown: game.newGameDialogShown,
-    gameInProgress: game.gameInProgress
+    gameInProgress: game.gameInProgress,
+    customGameDialogShown: game.customGameDialogShown
   };
 };
 
