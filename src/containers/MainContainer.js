@@ -3,18 +3,20 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Main from '../components/Main/main';
 import {initMatrix} from '../redux/actions/cells';
+import {showCustomGameDialog} from '../redux/actions/game';
 
-class AppContainer extends PureComponent {
+class MainContainer extends PureComponent {
   static propTypes = {
     initMatrix: PropTypes.func.isRequired,
     sortedData: PropTypes.array,
     isGameOver: PropTypes.bool.isRequired,
     newGameDialogShown: PropTypes.bool.isRequired,
-    gameInProgress: PropTypes.bool.isRequired
+    gameInProgress: PropTypes.bool.isRequired,
+    showCustomGameDialog: PropTypes.func.isRequired
   };
 
   render() {
-    const {sortedData, initMatrix, isGameOver, newGameDialogShown, gameInProgress} = this.props;
+    const {sortedData, initMatrix, isGameOver, newGameDialogShown, gameInProgress, showCustomGameDialog} = this.props;
 
     return (
       <Main
@@ -23,6 +25,7 @@ class AppContainer extends PureComponent {
         isGameOver={isGameOver}
         newGameDialogShown={newGameDialogShown}
         gameInProgress={gameInProgress}
+        showCustomGameDialog={showCustomGameDialog}
         />
     );
   }
@@ -38,7 +41,8 @@ const mapStateToProps = ({cells, game}) => {
 };
 
 const mapDispatchToProps = {
-  initMatrix
+  initMatrix,
+  showCustomGameDialog
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);

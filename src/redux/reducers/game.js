@@ -4,7 +4,8 @@ import * as ACTIONS from '../../constants/actionTypes';
 export const defaultState = {
   isGameOver: false,
   gameInProgress: false,
-  newGameDialogShown: false
+  newGameDialogShown: false,
+  customGameDialogShown: false
 };
 
 export const getCellsData = state => state.data;
@@ -18,5 +19,8 @@ export default handleActions({
   },
   [ACTIONS.MATRIX_CREATED]: state => {
     return {...state, newGameDialogShown: false, gameInProgress: true, isGameOver: false};
+  },
+  [ACTIONS.SHOW_CUSTOM_GAME_DIALOG]: state => {
+    return {...state, customGameDialogShown: true, newGameDialogShown: false};
   }
 }, defaultState);

@@ -7,21 +7,23 @@ import {showNewGame} from '../redux/actions/game';
 class ToolbarContainer extends PureComponent {
   static propTypes = {
     gameInProgress: PropTypes.bool.isRequired,
-    showNewGame: PropTypes.func.isRequired
+    showNewGame: PropTypes.func.isRequired,
+    isGameOver: PropTypes.bool.isRequired
   };
 
   render() {
-    const {gameInProgress, showNewGame} = this.props;
+    const {gameInProgress, showNewGame, isGameOver} = this.props;
 
     return (
-      <Toolbar gameInProgress={gameInProgress} showNewGame={showNewGame}/>
+      <Toolbar gameInProgress={gameInProgress} showNewGame={showNewGame} isGameOver={isGameOver}/>
     );
   }
 }
 
 const mapStateToProps = ({game}) => {
   return {
-    gameInProgress: game.gameInProgress
+    gameInProgress: game.gameInProgress,
+    isGameOver: game.isGameOver
   };
 };
 

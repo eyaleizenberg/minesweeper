@@ -1,6 +1,9 @@
 .demon {
   width: 40px;
   height: 40px;
+  &.isKiller {
+    background-color: #6b0000;
+  }
 }
 
 .adjacentDemons {

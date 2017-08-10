@@ -12,7 +12,8 @@ class Main extends PureComponent {
     sortedData: PropTypes.array,
     isGameOver: PropTypes.bool.isRequired,
     newGameDialogShown: PropTypes.bool.isRequired,
-    gameInProgress: PropTypes.bool.isRequired
+    gameInProgress: PropTypes.bool.isRequired,
+    showCustomGameDialog: PropTypes.func.isRequired
   };
 
   renderMatrix() {
@@ -21,14 +22,14 @@ class Main extends PureComponent {
   }
 
   renderContent() {
-    const {newGameDialogShown, gameInProgress, initMatrix} = this.props;
+    const {newGameDialogShown, gameInProgress, initMatrix, showCustomGameDialog} = this.props;
 
     if (!newGameDialogShown && !gameInProgress) {
       return <Logo/>;
     }
 
     if (newGameDialogShown) {
-      return <NewGameDialog initMatrix={initMatrix}/>;
+      return <NewGameDialog initMatrix={initMatrix} showCustomGameDialog={showCustomGameDialog} />;
     }
 
     return this.renderMatrix();

@@ -7,11 +7,18 @@ export default class CellContent extends PureComponent {
   static propTypes = {
     demonId: PropTypes.number,
     adjacentDemons: PropTypes.number.isRequired,
-    isDemon: PropTypes.bool.isRequired
+    isDemon: PropTypes.bool.isRequired,
+    isKiller: PropTypes.bool
   };
 
   renderDemon() {
-    return <img className={classes.demon} src={`${window.__STATICS_BASE_URL__}/assets/images/demons/${this.props.demonId}.png`}/>;
+    const {isKiller, demonId} = this.props;
+    return (
+      <img
+        className={classnames(classes.demon, {[classes.isKiller]: isKiller})}
+        src={`${window.__STATICS_BASE_URL__}/assets/images/demons/${demonId}.png`}
+        />
+    );
   }
 
   renderAdjacentCount() {

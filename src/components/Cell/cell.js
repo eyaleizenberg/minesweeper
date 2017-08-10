@@ -36,8 +36,8 @@ class Cell extends PureComponent {
     const {isDemon, adjacentDemons, isExposed, demonId, isKiller} = this.props;
 
     return (
-      <div className={classnames(classes.cell, {[classes.isExposed]: isExposed, [classes.isKiller]: isKiller})} onClick={this.handleClick}>
-        {isExposed && <CellContent adjacentDemons={adjacentDemons} isDemon={isDemon} demonId={demonId}/>}
+      <div className={classnames(classes.cell, {[classes.isExposed]: isExposed})} onClick={this.handleClick}>
+        {isExposed && <CellContent adjacentDemons={adjacentDemons} isDemon={isDemon} demonId={demonId} isKiller={isKiller}/>}
       </div>
     );
   }

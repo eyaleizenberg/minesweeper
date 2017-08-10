@@ -6,7 +6,8 @@ import Face from '../Face/face';
 class Toolbar extends PureComponent {
   static propTypes = {
     gameInProgress: PropTypes.bool.isRequired,
-    showNewGame: PropTypes.func.isRequired
+    showNewGame: PropTypes.func.isRequired,
+    isGameOver: PropTypes.bool.isRequired
   };
 
   renderIntroBox(text, handleClick) {
@@ -30,7 +31,17 @@ class Toolbar extends PureComponent {
   }
 
   renderInProgressContent() {
+    const {isGameOver} = this.props;
 
+    return (
+      <div className={classes.content}>
+        {this.renderIntroBox('NEW GAME', this.props.showNewGame)}
+        <div className={classes.face}>
+          <Face isGameOver={isGameOver}/>
+        </div>
+        {this.renderIntroBox('LOAD GAME')}
+      </div>
+    );
   }
 
   render() {
