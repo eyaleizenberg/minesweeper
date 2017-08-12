@@ -19,6 +19,7 @@ class CustomGameDialog extends PureComponent {
       isValid: true
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   valuesAreValid(data) {
@@ -43,6 +44,11 @@ class CustomGameDialog extends PureComponent {
         ...data
       });
     }
+  }
+
+  handleSubmit() {
+    const {width, height, totalDemons} = this.state;
+    this.props.initMatrix({width, height, totalDemons});
   }
 
   renderFields() {
@@ -70,6 +76,7 @@ class CustomGameDialog extends PureComponent {
         {this.renderFields()}
         <span
           className={classnames(dialogClasses.text, classes.startGame, {[classes.isValid]: this.state.isValid})}
+          onClick={this.handleSubmit}
           >
           START GAME!
         </span>

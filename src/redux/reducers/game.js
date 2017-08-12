@@ -18,7 +18,7 @@ export default handleActions({
     return {...state, newGameDialogShown: true};
   },
   [ACTIONS.MATRIX_CREATED]: state => {
-    return {...state, newGameDialogShown: false, gameInProgress: true, isGameOver: false};
+    return {...state, newGameDialogShown: false, gameInProgress: true, isGameOver: false, customGameDialogShown: false};
   },
   [ACTIONS.SHOW_CUSTOM_GAME_DIALOG]: state => {
     return {...state, customGameDialogShown: true, newGameDialogShown: false};

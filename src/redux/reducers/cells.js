@@ -109,5 +109,11 @@ export default handleActions({
   [ACTIONS.GAME_OVER]: (state, {payload}) => {
     const data = markAllVisible(getCellsData(state), payload.cellId);
     return {...state, data};
+  },
+  [ACTIONS.CELL_EXPOSED]: (state, {payload}) => {
+    const {cellId} = payload;
+    const data = {...state.data};
+    data[cellId] = {...data[cellId], isExposed: true};
+    return {...state, data};
   }
 }, defaultState);

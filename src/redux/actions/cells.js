@@ -4,6 +4,7 @@ import {getCellsData} from '../reducers/cells';
 
 export const matrixCreatedAction = createAction(ACTIONS.MATRIX_CREATED);
 export const gameOverAction = createAction(ACTIONS.GAME_OVER);
+export const exposeCellAction = createAction(ACTIONS.CELL_EXPOSED);
 
 export const initMatrix = opts => dispatch => {
   dispatch(matrixCreatedAction(opts));
@@ -14,7 +15,7 @@ export const revealCell = cellId => (dispatch, getState) => {
   if (cell.isDemon) {
     dispatch(gameOverAction({cellId}));
   } else if (cell.adjacentDemons > 0) {
-    console.log('Has adjacentDemons, expose only it')
+    dispatch(exposeCellAction({cellId}));
   } else {
     console.log('No adjacentDemons, recurse it!')
   }
