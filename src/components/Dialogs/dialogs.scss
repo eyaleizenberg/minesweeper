@@ -1,0 +1,15 @@
+.container {
+  height: 507px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.text {
+  font-family: Doom;
+  color: #db0000;
+  font-size: 30px;
+}
