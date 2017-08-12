@@ -23,3 +23,12 @@
   box-sizing: border-box;
   padding: 0 15px;
 }
+
+.startGame {
+  color: #aaa;
+  margin-top: 40px;
+  &.isValid {
+    color: #fffd6a;
+    cursor: pointer;
+  }
+}

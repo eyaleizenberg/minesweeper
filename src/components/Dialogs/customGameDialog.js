@@ -10,13 +10,54 @@ class CustomGameDialog extends PureComponent {
     initMatrix: PropTypes.func.isRequired,
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      width: customGameFields.width.defaultValue,
+      height: customGameFields.height.defaultValue,
+      totalDemons: customGameFields.totalDemons.defaultValue,
+      isValid: true
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  valuesAreValid(data) {
+    let isValid = true;
+    Object.keys(customGameFields).forEach(key => {
+      if (!data[key]) {
+        isValid = false;
+      }
+    });
+
+    return isValid;
+  }
+
+  handleChange(event) {
+    const domField = event.target;
+    const customField = customGameFields[domField.dataset.attribute];
+    const {value} = domField;
+    if (value <= customField.maxValue) {
+      const data = {...this.state, [customField.attribute]: value};
+      data.isValid = this.valuesAreValid(data);
+      this.setState({
+        ...data
+      });
+    }
+  }
+
   renderFields() {
     return Object.keys(customGameFields).map(key => {
       const customField = customGameFields[key];
       return (
         <div key={customField.id} className={classes.fieldContainer}>
           <span className={classnames(dialogClasses.text, classes.label)}>{customField.label}</span>
-          <input className={classes.input} type="text" value={customField.value}/>
+          <input
+            className={classes.input}
+            type="text"
+            value={this.state[customField.attribute]}
+            onChange={this.handleChange}
+            data-attribute={customField.attribute}
+            />
         </div>
       );
     });
@@ -27,6 +68,11 @@ class CustomGameDialog extends PureComponent {
       <div className={dialogClasses.container}>
         <span className={dialogClasses.text}>SELECT YOUR PERSONAL NIGHTMARE:</span>
         {this.renderFields()}
+        <span
+          className={classnames(dialogClasses.text, classes.startGame, {[classes.isValid]: this.state.isValid})}
+          >
+          START GAME!
+        </span>
       </div>
     );
   }
