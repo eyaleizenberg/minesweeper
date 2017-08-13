@@ -1,6 +1,6 @@
 import {handleActions} from 'redux-actions';
 import * as ACTIONS from '../../constants/actionTypes';
-import genXy from '../../utilities/genXy';
+import {genXy, genSurrounding} from '../../utilities/genXy';
 
 export const defaultState = {
   sortedData: [],
@@ -71,8 +71,8 @@ const setNumbers = (dataWithDemons, width, height) => {
     for (let y = 0; y < height; y++) {
       let count = 0;
 
-      [[x - 1, y], [x + 1, y], [x, y + 1], [x, y - 1], [x + 1, y + 1], [x + 1, y - 1], [x - 1, y + 1], x - 1, y - 1].forEach(coordinates => {
-        count += countDemonInCell(dataWithDemons, genXy(coordinates[0], coordinates[1]));
+      genSurrounding(x, y).forEach(coordinates => {
+        count += countDemonInCell(dataWithDemons, coordinates);
       });
       dataWithNumbers[genXy(x, y)].adjacentDemons = count;
     }
@@ -114,6 +114,10 @@ export default handleActions({
     const {cellId} = payload;
     const data = {...state.data};
     data[cellId] = {...data[cellId], isExposed: true};
+    return {...state, data};
+  },
+  [ACTIONS.EMPTY_CELL_EXPOSED]: (state, {payload}) => {
+
     return {...state, data};
   }
 }, defaultState);
