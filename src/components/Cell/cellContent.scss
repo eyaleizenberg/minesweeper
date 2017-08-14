@@ -1,6 +1,6 @@
 .demon {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   &.isKiller {
     background-color: #6b0000;
   }
@@ -13,4 +13,7 @@
   &.count3 { color: red; }
   &.count4 { color: purple; }
   &.count5 { color: darkred; }
+  &.count6 { color: yellow; }
+  &.count7 { color: orange; }
+  &.count8 { color: pink; }
 }

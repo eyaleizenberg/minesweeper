@@ -42,7 +42,9 @@ const generateMatrix = (width, height) => {
       data[id] = {
         id,
         isDemon: false,
-        isExposed: false
+        isExposed: false,
+        x,
+        y
       };
 
       sortedData[x].push(id);
@@ -98,6 +100,19 @@ const markAllVisible = (data, cellId) => {
 
 export const getCellsData = state => state.data;
 
+const traverseFromEmpty = (data, initialCell) => {
+  const adjacentCoordinates = genSurrounding(initialCell.x, initialCell.y);
+  adjacentCoordinates.forEach(coordinate => {
+    const cell = data[coordinate];
+    if (cell && !cell.isExposed && !cell.isDemon) {
+      data[coordinate].isExposed = true;
+      if (!cell.adjacentDemons) {
+        traverseFromEmpty(data, data[coordinate]);
+      }
+    }
+  });
+};
+
 export default handleActions({
   [ACTIONS.MATRIX_CREATED]: (state, {payload}) => {
     const {width, height, totalDemons} = payload;
@@ -117,7 +132,10 @@ export default handleActions({
     return {...state, data};
   },
   [ACTIONS.EMPTY_CELL_EXPOSED]: (state, {payload}) => {
-
+    const {cellId} = payload;
+    const data = JSON.parse(JSON.stringify(state.data));
+    data[cellId] = {...data[cellId], isExposed: true};
+    traverseFromEmpty(data, data[cellId]);
     return {...state, data};
   }
 }, defaultState);
